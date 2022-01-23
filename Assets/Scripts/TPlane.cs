@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class TPlane : Transformer
 {
     [SerializeField] private float speed;
     [SerializeField] private string model;
 
+    private Animator animator;
+    private readonly string assemblyTrigger = "assembly";
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Start()
     {
-        Speed = speed;
         Model = model;
+        Speed = speed;
     }
 
     public override void GoTo(Transform transform)
@@ -21,7 +30,12 @@ public class TPlane : Transformer
         throw new System.NotImplementedException();
     }
 
-    public override void ToTransform()
+    public override void Assembly()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Disassembly()
     {
         throw new System.NotImplementedException();
     }
@@ -30,4 +44,6 @@ public class TPlane : Transformer
     {
         base.Shoot();
     }
+
+    
 }

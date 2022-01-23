@@ -2,13 +2,13 @@
 
 public class TPlane : Transformer
 {
-    [SerializeField] private string name;
     [SerializeField] private float speed;
+    [SerializeField] private string model;
 
-    public TPlane()
+    private void Start()
     {
-        Name = name;
         Speed = speed;
+        Model = model;
     }
 
     public override void GoTo(Transform transform)

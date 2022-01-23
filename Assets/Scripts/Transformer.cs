@@ -4,20 +4,7 @@ using UnityEngine;
 
 public abstract class Transformer : MonoBehaviour
 {
-    public string Name 
-    {
-        get 
-        {
-            return Name; 
-        }
-        set 
-        {
-            if (value.Length >= 2 && value.Length <= 7 )
-                Name = value;
-            else
-                Debug.Log("Name must be between 3 and 7 characters");
-        } 
-    }
+    public string Model { get; set; }
 
     public float Speed 
     {

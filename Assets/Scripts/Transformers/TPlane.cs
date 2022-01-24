@@ -5,6 +5,15 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public class TPlane : Transformer
 {
+    [Header("Right Rocket Position")]
+    [SerializeField] private Transform RA_Pos;
+    [SerializeField] private Transform RB_Pos;
+
+    [Header("Left Rocket Position")]
+    [SerializeField] private Transform LA_Pos;
+    [SerializeField] private Transform LB_Pos;
+
+    [SerializeField] private Projectile projectile;
     [SerializeField] private float speed;
 
     private Animator animator;
@@ -13,6 +22,7 @@ public class TPlane : Transformer
     private readonly string assemblyTrigger = "assembly";
     private readonly float delayAssembly = 3f;
     private bool isAssembly = false;
+    private bool shootFlag = false;
 
     public override float Speed
     {
@@ -76,7 +86,22 @@ public class TPlane : Transformer
 
     public override void Shoot()
     {
-        base.Shoot();
+        shootFlag = shootFlag ? false : true;
+        Projectile bomb = Instantiate(projectile, GetShootPosition(), Quaternion.identity);
+        Rigidbody body = bomb.GetComponent<Rigidbody>();
+
+        body.AddForce(AlternatingPosition() * 15f, ForceMode.Impulse);
     }
 
+    private Vector3 GetShootPosition() => shootFlag ? RA_Pos.position : LA_Pos.position;
+
+    private Vector3 AlternatingPosition()
+    {
+        Vector3 direction;
+        if (shootFlag)
+            direction = (RB_Pos.position - RA_Pos.position ).normalized;
+        else
+            direction = (LB_Pos.position - LA_Pos.position ).normalized;
+        return direction;
+    }
 }

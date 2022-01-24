@@ -26,6 +26,10 @@ public class TransformManager : MonoBehaviour
             {
                 Tformer.Disassembly();
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Tformer.Shoot();
+            }
             if (Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

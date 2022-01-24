@@ -21,7 +21,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-
     private void GetObjectPosition(Transformer trans)
     {
         target = trans.transform;

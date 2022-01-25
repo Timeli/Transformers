@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class TTank : Transformer
 {
-
     [Header("Right Rocket Position")]
     [SerializeField] private Transform RA_Pos;
     [SerializeField] private Transform RB_Pos;

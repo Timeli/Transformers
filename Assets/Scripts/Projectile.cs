@@ -5,10 +5,22 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
-    private Rigidbody body;
+    [SerializeField] private float destroyProjectileTime;
+  
 
     private void Start()
     {
-        body = GetComponent<Rigidbody>();
+        StartCoroutine(DelayBeforeDestroy(destroyProjectileTime));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+    }
+
+    private IEnumerator DelayBeforeDestroy(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Destroy(gameObject);
     }
 }

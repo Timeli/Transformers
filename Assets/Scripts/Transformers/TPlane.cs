@@ -13,7 +13,11 @@ public class TPlane : Transformer
     [SerializeField] private Transform LA_Pos;
     [SerializeField] private Transform LB_Pos;
 
+    [Header("Projectile")]
     [SerializeField] private Projectile projectile;
+    [SerializeField] private float projectileSpeed;
+
+    [Header("TPlane")]
     [SerializeField] private float speed;
 
     private Animator animator;
@@ -52,7 +56,6 @@ public class TPlane : Transformer
     {
         if (isAssembly)
         {
-            print(endPoint);
             navMeshAgent.SetDestination(endPoint.position);
         }
     }
@@ -86,16 +89,18 @@ public class TPlane : Transformer
 
     public override void Shoot()
     {
-        shootFlag = shootFlag ? false : true;
-        Projectile bomb = Instantiate(projectile, GetShootPosition(), Quaternion.identity);
-        Rigidbody body = bomb.GetComponent<Rigidbody>();
-
-        body.AddForce(AlternatingPosition() * 15f, ForceMode.Impulse);
+        if (isAssembly)
+        {
+            shootFlag = shootFlag ? false : true;
+            Projectile bomb = Instantiate(projectile, GetAlterShootPosition(), Quaternion.identity);
+            Rigidbody body = bomb.GetComponent<Rigidbody>();
+            body.AddForce(GetDirection() * projectileSpeed, ForceMode.Impulse);
+        }
     }
 
-    private Vector3 GetShootPosition() => shootFlag ? RA_Pos.position : LA_Pos.position;
+    private Vector3 GetAlterShootPosition() => shootFlag ? RA_Pos.position : LA_Pos.position;
 
-    private Vector3 AlternatingPosition()
+    private Vector3 GetDirection()
     {
         Vector3 direction;
         if (shootFlag)

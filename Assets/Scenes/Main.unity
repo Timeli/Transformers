@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 374483075}
-  _capacity: 10
+  _capacity: 8
   _enemyPrefab: {fileID: 2287962591956410483, guid: ca671e65d2250a44c9a62dc37fa42cc6, type: 3}
   _secondsBetweenSpawn: 5
 --- !u!1 &705507993
@@ -816,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1349869042815785614, guid: 63f5a9e9ab2d0994a80cbce06378a5f8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.36
+      value: -3.79
       objectReference: {fileID: 0}
     - target: {fileID: 1349869042815785614, guid: 63f5a9e9ab2d0994a80cbce06378a5f8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -824,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1349869042815785614, guid: 63f5a9e9ab2d0994a80cbce06378a5f8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.681
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 1349869042815785614, guid: 63f5a9e9ab2d0994a80cbce06378a5f8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1366,7 +1366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1906313282790840720, guid: 5588572a02b7c614aaf4f02484c49191, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1906313282790840720, guid: 5588572a02b7c614aaf4f02484c49191, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1374,7 +1374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1906313282790840720, guid: 5588572a02b7c614aaf4f02484c49191, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.14
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 1906313282790840720, guid: 5588572a02b7c614aaf4f02484c49191, type: 3}
       propertyPath: m_LocalRotation.w

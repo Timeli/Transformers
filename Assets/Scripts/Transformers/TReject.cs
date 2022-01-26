@@ -41,8 +41,12 @@ public class TReject : Transformer
 
     public override void Assembly()
     {
-        animator.SetBool(assemblyTrigger, true);
-        StartCoroutine(Delay(delayAssembly));
+        if (animator != null)
+        {
+            animator.SetBool(assemblyTrigger, true);
+            StartCoroutine(Delay(delayAssembly));
+        }
+        
     }
 
     private IEnumerator Delay(float duration)
@@ -53,8 +57,12 @@ public class TReject : Transformer
 
     public override void Disassembly()
     {
-        animator.SetBool(assemblyTrigger, false);
-        isAssembly = false;
+        if (animator != null)
+        {
+            animator.SetBool(assemblyTrigger, false);
+            isAssembly = false;
+        }
+        
     }
 
     public override void GoTo(Transform endPoint)
@@ -67,9 +75,40 @@ public class TReject : Transformer
 
     public override void GoTo(Vector3 endPoint)
     {
-        if (isAssembly)
+        if (isAssembly && navMeshAgent != null)
         {
             navMeshAgent.SetDestination(endPoint);
         }
     }
+
+    public override void Shoot()
+    {
+        if (isAssembly && navMeshAgent != null)
+        {
+            int c = transform.childCount;
+            for (int i = 0; i < c; i++)
+            {
+                transform.GetChild(i).gameObject.AddComponent<Rigidbody>();
+                transform.GetChild(i).GetComponent<Rigidbody>()
+                .AddExplosionForce(1000, transform.position, 10);
+            }
+            DestroyReject();
+        }
+    }
+
+    private void DestroyReject()
+    {
+        navMeshAgent.isStopped = true;
+        navMeshAgent = null;
+        Destroy(navMeshAgent);
+        Destroy(animator);
+        StartCoroutine(Disappear());
+    }
+
+    private IEnumerator Disappear()
+    {
+        yield return new WaitForSeconds(20f);
+        gameObject.SetActive(false);
+    }
+
 }

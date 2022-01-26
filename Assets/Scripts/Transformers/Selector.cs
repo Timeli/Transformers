@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Selector : MonoBehaviour
 {
+    [SerializeField] private TMP_Text selectedText;
+
     private Transformer transformer = null;
     public event Action<Transformer> selected;
     private RaycastHit hit;
@@ -21,11 +24,9 @@ public class Selector : MonoBehaviour
 
     private void ClickOnTFormer(RaycastHit hit)
     {
-        if (hit.collider.TryGetComponent<Transformer>(out Transformer trans))
-        {
-            transformer = trans;
-            selected?.Invoke(transformer);
-        }
+        transformer = hit.collider.GetComponent<Transformer>();
+        selected?.Invoke(transformer);
+        selectedText.text = $"selected: {transformer?.name}";
     }
 
     private bool GetRaycastHit()

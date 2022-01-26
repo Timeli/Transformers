@@ -11,25 +11,27 @@ public class TransformManager : MonoBehaviour
     private void Manage(Transformer transformer)
     {
         Tformer = transformer;
-        direction = transformer.transform.position;
+        if (transformer != null)
+            direction = transformer.transform.position;
     }
 
     private void Update()
     {
         if (Tformer != null)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Tformer.Assembly();
-            }
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                Tformer.Disassembly();
-            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Tformer.Shoot();
             }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                Tformer.Assembly();
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Tformer.Disassembly();
+            }
+
             if (Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
